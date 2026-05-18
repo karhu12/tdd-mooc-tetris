@@ -1,3 +1,5 @@
+import { normalize } from "../test/testing.mjs";
+
 export class Board {
   width;
   height;
@@ -12,7 +14,7 @@ export class Board {
   }
 
   toString() {
-    return this.state;
+    return normalize(this.state);
   }
 
   drop(shape) {
