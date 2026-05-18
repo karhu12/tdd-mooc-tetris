@@ -18,9 +18,8 @@ export class Board {
 
   drop(shape) {
     this.state = `.X.
-...
-...
-`;
+                  ...
+                  ...`;
   }
 
   tick() {
