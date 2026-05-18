@@ -1,6 +1,10 @@
 export class Board {
   width;
   height;
+  state = `...
+...
+...
+`;
 
   constructor(width, height) {
     this.width = width;
@@ -8,7 +12,11 @@ export class Board {
   }
 
   toString() {
-    return `...
+    return this.state;
+  }
+
+  drop(shape) {
+    this.state = `.X.
 ...
 ...
 `;
