@@ -21,4 +21,11 @@ export class Board {
 ...
 `;
   }
+
+  tick() {
+    this.state = `...
+.X.
+...
+`;
+  }
 }
