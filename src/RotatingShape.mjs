@@ -20,4 +20,10 @@ export class RotatingShape {
                                   HEB
                                   IFC`);
     }
+
+    rotateLeft() {
+        return new RotatingShape(`CFI
+                                  BEH
+                                  ADG`);
+    }
 }
