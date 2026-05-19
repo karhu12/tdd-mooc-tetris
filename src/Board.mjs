@@ -1,6 +1,5 @@
 import { normalize } from "../test/testing.mjs";
-
-const EMPTY_TILE = ".";
+import { EMPTY_TILE } from "./Constants.mjs";
 
 export class Board {
   width;
