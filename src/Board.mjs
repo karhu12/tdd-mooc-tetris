@@ -22,7 +22,7 @@ export class Board {
         if (this.shapeYPosition == y && middle == x)
           state += 'X';
         else
-          state += '.';
+          state += this.tiles[y][x];
       }
       state += '\n';
     }
