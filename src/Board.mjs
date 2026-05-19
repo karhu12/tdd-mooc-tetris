@@ -43,8 +43,12 @@ export class Board {
     this.shapeYPosition = 0;
   }
 
+  isShapeBlocked() {
+    return this.tiles[this.shapeYPosition + 1][this.getMiddle()] !== EMPTY_TILE;
+  }
+
   tick() {
-    if (this.shapeYPosition < this.maxYPosition) {
+    if (this.shapeYPosition < this.maxYPosition && !this.isShapeBlocked()) {
       this.shapeYPosition++;
     } else {
       this.tiles[this.shapeYPosition][this.getMiddle()] = this.shape;
