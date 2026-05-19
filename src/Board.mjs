@@ -5,6 +5,7 @@ const EMPTY_TILE = ".";
 export class Board {
   width;
   height;
+  shape;
   shapeYPosition;
   maxYPosition;
   tiles;
@@ -35,8 +36,10 @@ export class Board {
   }
 
   drop(shape) {
-    if (shape === "Y")
+    if (this.shape) {
       throw new Error("already falling");
+    }
+    this.shape = shape;
     this.shapeYPosition = 0;
   }
 
