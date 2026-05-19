@@ -55,11 +55,11 @@ describe("The I shape", () => {
 
   test("initial orientation", () => {
     expect(shape.toString()).to.equalShape(
-      `.....
-       .....
-       IIII.
-       .....
-       .....`
+      `....
+       ....
+       IIII
+       ....
+       ....`
     );
   });
 
@@ -68,8 +68,7 @@ describe("The I shape", () => {
       `..I..
        ..I..
        ..I..
-       ..I..
-       .....`
+       ..I..`
     );
   });
 
@@ -78,12 +77,11 @@ describe("The I shape", () => {
       `..I..
        ..I..
        ..I..
-       ..I..
-       .....`
+       ..I..`
     );
   });
 
-  test.skip("has 2 distinct orientations", () => {
+  test("has 2 distinct orientations", () => {
     expect(distinctOrientations(shape).size).to.equal(2);
   });
 });
