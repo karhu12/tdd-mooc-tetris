@@ -1,5 +1,9 @@
 export class RotatingShape {
-    static fromString() {
+    static fromString(string) {
+        return new RotatingShape();
+    }
 
+    toString() {
+        return ""
     }
 }
