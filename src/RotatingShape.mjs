@@ -11,9 +11,13 @@ export class RotatingShape {
 
     constructor(shape) {
         this.shape = shape;
-        const rows = this.toString().trimEnd().split("\n");
+        const rows = this.toRows();
         this.width = Math.max(...rows.map((row) => row.length));
         this.height = rows.length;
+    }
+
+    toRows() {
+        return this.toString().trimEnd().split("\n")
     }
 
     toString() {
@@ -21,10 +25,15 @@ export class RotatingShape {
     }
 
     rotateRight() {
-
-        return new RotatingShape(`GDA
-                                  HEB
-                                  IFC`);
+        const rows = this.toRows()
+        let newShape = '';
+        for (let x = 0; x < this.width; x++) {
+            for (let y = this.height - 1; y >= 0; y--) {
+                newShape += rows[y][x];
+            }
+            newShape += '\n';
+        }
+        return new RotatingShape(newShape);
     }
 
     rotateLeft() {
