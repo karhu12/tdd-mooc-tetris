@@ -1,6 +1,7 @@
 import { RotatingShape } from "./RotatingShape.mjs"
 
 export class Tetromino {
+    static BLOCK_SHAPE = new RotatingShape(`X`);
     static T_SHAPE = new RotatingShape(`.T.
                                         TTT
                                         ...`);
