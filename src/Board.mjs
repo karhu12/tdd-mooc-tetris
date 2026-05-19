@@ -44,10 +44,14 @@ export class Board {
   }
 
   tick() {
-    this.shapeYPosition++;
+    if (this.shapeYPosition < this.maxYPosition) {
+      this.shapeYPosition++;
+    } else {
+      this.shape = null;
+    }
   }
 
   hasFalling() {
-    return true;
+    return Boolean(this.shape);
   }
 }
