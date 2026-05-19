@@ -4,6 +4,7 @@ export class Board {
   width;
   height;
   state;
+  shapeYPosition;
 
   constructor(width, height) {
     this.width = width;
@@ -14,10 +15,14 @@ export class Board {
   }
 
   toString() {
+    const middle = Math.round(this.width / 2) - 1;
     let state = '';
     for (let y = 0; y < this.height; y++) {
       for (let x = 0; x < this.width; x++) {
-        state += '.';
+        if (this.shapeYPosition == y && middle == x)
+          state += 'X';
+        else
+          state += '.';
       }
       state += '\n';
     }
@@ -27,6 +32,7 @@ export class Board {
   drop(shape) {
     if (shape === "Y")
       throw new Error("already falling")
+    this.shapeYPosition = 0;
     this.state = `.X.
                   ...
                   ...`;
