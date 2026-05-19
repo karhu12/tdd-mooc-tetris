@@ -16,12 +16,15 @@ export class Board {
     this.tiles = Array(this.height).fill(Array(this.width).fill(EMPTY_TILE));
   }
 
+  getMiddle() {
+    return Math.round(this.width / 2) - 1;
+  }
+
   toString() {
-    const middle = Math.round(this.width / 2) - 1;
     let state = '';
     for (let y = 0; y < this.height; y++) {
       for (let x = 0; x < this.width; x++) {
-        if (this.shapeYPosition == y && middle == x)
+        if (this.shapeYPosition == y && this.getMiddle() == x)
           state += 'X';
         else
           state += this.tiles[y][x];
