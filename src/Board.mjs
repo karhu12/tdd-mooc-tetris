@@ -6,11 +6,13 @@ export class Board {
   width;
   height;
   shapeYPosition;
+  maxYPosition;
   tiles;
 
   constructor(width, height) {
     this.width = width;
     this.height = height;
+    this.maxYPosition = height - 1;
     this.tiles = Array(this.height).fill(Array(this.width).fill(EMPTY_TILE));
   }
 
