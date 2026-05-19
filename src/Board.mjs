@@ -13,6 +13,10 @@ export class Board {
                   ...`;
   }
 
+  getBoardState() {
+    
+  }
+
   toString() {
     return normalize(this.state);
   }
