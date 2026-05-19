@@ -33,14 +33,9 @@ export class Board {
     if (shape === "Y")
       throw new Error("already falling")
     this.shapeYPosition = 0;
-    this.state = `.X.
-                  ...
-                  ...`;
   }
 
   tick() {
-    this.state = `...
-                  .X.
-                  ...`;
+    this.shapeYPosition++;
   }
 }
