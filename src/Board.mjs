@@ -27,11 +27,15 @@ export class Board {
 
   drop(shape) {
     if (shape === "Y")
-      throw new Error("already falling")
+      throw new Error("already falling");
     this.shapeYPosition = 0;
   }
 
   tick() {
     this.shapeYPosition++;
+  }
+
+  hasFalling() {
+    return true;
   }
 }
