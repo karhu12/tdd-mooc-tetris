@@ -18,6 +18,8 @@ export class Board {
   }
 
   drop(shape) {
+    if (shape === "Y")
+      throw new Error("already falling")
     this.state = `.X.
                   ...
                   ...`;
