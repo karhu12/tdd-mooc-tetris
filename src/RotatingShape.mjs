@@ -6,9 +6,14 @@ export class RotatingShape {
     }
 
     shape;
+    width;
+    height;
 
     constructor(shape) {
         this.shape = shape;
+        const rows = this.toString().trimEnd().split("\n");
+        this.width = Math.max(...rows.map((row) => row.length));
+        this.height = rows.length;
     }
 
     toString() {
@@ -16,6 +21,7 @@ export class RotatingShape {
     }
 
     rotateRight() {
+
         return new RotatingShape(`GDA
                                   HEB
                                   IFC`);
