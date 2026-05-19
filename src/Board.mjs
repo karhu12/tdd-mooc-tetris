@@ -3,13 +3,14 @@ import { normalize } from "../test/testing.mjs";
 export class Board {
   width;
   height;
-  state = `...
-           ...
-           ...`;
+  state;
 
   constructor(width, height) {
     this.width = width;
     this.height = height;
+    this.state = `...
+                  ...
+                  ...`;
   }
 
   toString() {
