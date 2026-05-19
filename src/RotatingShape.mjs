@@ -1,3 +1,5 @@
+import { normalize } from "../test/testing.mjs";
+
 export class RotatingShape {
     static fromString(shapeString) {
         return new RotatingShape(shapeString);
@@ -10,6 +12,6 @@ export class RotatingShape {
     }
 
     toString() {
-        return "";
+        return normalize(this.shape);
     }
 }
