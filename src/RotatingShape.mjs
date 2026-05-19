@@ -37,8 +37,14 @@ export class RotatingShape {
     }
 
     rotateLeft() {
-        return new RotatingShape(`CFI
-                                  BEH
-                                  ADG`);
+        const rows = this.toRows()
+        let newShape = '';
+        for (let x = 0; x < this.width; x++) {
+            for (let y = 0; y < this.height; y++) {
+                newShape += rows[y][this.width - 1 - x];
+            }
+            newShape += "\n";
+        }
+        return new RotatingShape(newShape);
     }
 }
