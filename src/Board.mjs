@@ -13,12 +13,15 @@ export class Board {
                   ...`;
   }
 
-  getBoardState() {
-    
-  }
-
   toString() {
-    return normalize(this.state);
+    let state = '';
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) {
+        state += '.';
+      }
+      state += '\n';
+    }
+    return state;
   }
 
   drop(shape) {
