@@ -14,7 +14,7 @@ export class Board {
     this.width = width;
     this.height = height;
     this.maxYPosition = height - 1;
-    this.tiles = Array(this.height).fill(Array(this.width).fill(EMPTY_TILE));
+    this.tiles = Array.from(Array(this.height), () => new Array(this.width).fill(EMPTY_TILE));
   }
 
   getMiddle() {
@@ -25,8 +25,8 @@ export class Board {
     let state = '';
     for (let y = 0; y < this.height; y++) {
       for (let x = 0; x < this.width; x++) {
-        if (this.shapeYPosition == y && this.getMiddle() == x)
-          state += 'X';
+        if (this.shape && this.shapeYPosition == y && this.getMiddle() == x)
+          state += this.shape;
         else
           state += this.tiles[y][x];
       }
@@ -47,6 +47,7 @@ export class Board {
     if (this.shapeYPosition < this.maxYPosition) {
       this.shapeYPosition++;
     } else {
+      this.tiles[this.shapeYPosition][this.getMiddle()] = this.shape;
       this.shape = null;
     }
   }
