@@ -43,6 +43,14 @@ describe("The T shape", () => {
     );
   });
 
+  test("can be rotated right twice", () => {
+    expect(shape.rotateRight().rotateRight().toString()).to.equalShape(
+      `...
+       TTT
+       .T.`
+    );
+  });
+
   test("has 4 distinct orientations", () => {
     expect(distinctOrientations(shape).size).to.equal(4);
   });
@@ -99,9 +107,8 @@ describe("The O shape", () => {
 
   test.skip("cannot be rotated right/clockwise", () => {
     expect(shape.rotateRight().toString()).to.equalShape(
-      `.OO
-       .OO
-       ...`
+      `OO
+       OO`
     );
   });
 
