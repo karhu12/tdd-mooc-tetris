@@ -1,13 +1,17 @@
 import { normalize } from "../test/testing.mjs";
 
+const EMPTY_TILE = ".";
+
 export class Board {
   width;
   height;
   shapeYPosition;
+  tiles;
 
   constructor(width, height) {
     this.width = width;
     this.height = height;
+    this.tiles = Array(this.height).fill(Array(this.width).fill(EMPTY_TILE));
   }
 
   toString() {
