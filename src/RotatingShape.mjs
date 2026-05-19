@@ -14,4 +14,10 @@ export class RotatingShape {
     toString() {
         return normalize(this.shape);
     }
+
+    rotateRight() {
+        return new RotatingShape(`GDA
+                                  HEB
+                                  IFC`);
+    }
 }
