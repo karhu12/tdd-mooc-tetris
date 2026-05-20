@@ -1,7 +1,7 @@
 import { Assertion } from "chai";
 
 export function normalize(s) {
-  return s.replaceAll(" ", "").trim() + "\n";
+  return s.replaceAll(" ", "").trim();
 }
 
 Assertion.addMethod("equalShape", function (expected) {

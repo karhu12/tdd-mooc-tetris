@@ -1,5 +1,6 @@
 import { normalize } from "../test/testing.mjs";
 import { EMPTY_TILE } from "./Constants.mjs";
+import { RotatingShape } from "./RotatingShape.mjs";
 
 export class Board {
   width;
@@ -29,7 +30,9 @@ export class Board {
         else
           state += this.tiles[y][x];
       }
-      state += '\n';
+
+      if (y + 1 < this.height)
+        state += '\n';
     }
     return state;
   }
@@ -38,7 +41,7 @@ export class Board {
     if (this.shape) {
       throw new Error("already falling");
     }
-    this.shape = shape;
+    this.shape = new RotatingShape(shape);
     this.shapeYPosition = 0;
   }
 

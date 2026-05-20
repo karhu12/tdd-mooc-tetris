@@ -43,7 +43,9 @@ export class RotatingShape {
             for (let y = 0; y < this.height; y++) {
                 newShape += rows[y][this.width - 1 - x];
             }
-            newShape += "\n";
+
+            if (x + 1 < this.width)
+                newShape += "\n";
         }
         return new RotatingShape(newShape);
     }
