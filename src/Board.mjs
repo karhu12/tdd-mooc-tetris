@@ -7,6 +7,7 @@ export class Board {
   height;
   shape;
   shapeYPosition;
+  shapeXPosition;
   maxYPosition;
   tiles;
 
@@ -18,15 +19,16 @@ export class Board {
   }
 
   getMiddle() {
-    return Math.round(this.width / 2) - 1;
+    return Math.round(this.width / 2 - 1);
   }
 
   toString() {
     let state = '';
+    const shapeOn = this.shape ? this.shape.toRows().map((v, i) => v.split('').map((vv, ii) => [this.shapeYPosition + i, this.shapeXPosition + ii])).flat() : [];
     for (let y = 0; y < this.height; y++) {
       for (let x = 0; x < this.width; x++) {
-        if (this.shape && this.shapeYPosition == y && this.getMiddle() == x)
-          state += this.shape;
+        if (shapeOn.some((on) => on[0] === y && on[1] === x))
+          state += this.shape.toRows()[y - this.shapeYPosition][x - this.shapeXPosition];
         else
           state += this.tiles[y][x];
       }
@@ -41,19 +43,20 @@ export class Board {
     if (this.shape) {
       throw new Error("already falling");
     }
-    this.shape = new RotatingShape(shape);
+    this.shape = shape instanceof RotatingShape ? shape : new RotatingShape(shape);
     this.shapeYPosition = 0;
+    this.shapeXPosition = this.getMiddle() - Math.round(this.shape.width / 2 - 1);
   }
 
   isFallingBlocked() {
-    return this.tiles[this.shapeYPosition + 1][this.getMiddle()] !== EMPTY_TILE;
+    return this.tiles[this.shapeYPosition + 1][this.shapeXPosition] !== EMPTY_TILE;
   }
 
   tick() {
     if (this.shapeYPosition < this.maxYPosition && !this.isFallingBlocked()) {
       this.shapeYPosition++;
     } else {
-      this.tiles[this.shapeYPosition][this.getMiddle()] = this.shape;
+      this.tiles[this.shapeYPosition][this.shapeXPosition] = this.shape;
       this.shape = null;
     }
   }
