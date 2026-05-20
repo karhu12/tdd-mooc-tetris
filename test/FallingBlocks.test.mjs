@@ -17,7 +17,8 @@ describe("Falling blocks", () => {
   });
 
 
-  describe("When a block is dropped", () => {
+
+  describe("When a X block is dropped", () => {
     beforeEach(() => {
       board.drop("X");
     });
