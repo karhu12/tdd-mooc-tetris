@@ -39,7 +39,7 @@ export class Board {
   }
 
   drop(shape) {
-    if (this.shape) {
+    if (this.hasFalling()) {
       throw new Error("already falling");
     }
     this.shape = shape instanceof RotatingShape ? shape : new RotatingShape(shape);
@@ -48,13 +48,13 @@ export class Board {
   }
 
   isFallingBlocked() {
-    const onPositions = this.shape.positionsRelativeTo(this.shapeXPosition, this.shapeYPosition, true);
+    const onPositions = this.shape ? this.shape.positionsRelativeTo(this.shapeXPosition, this.shapeYPosition, true) : [];
     const noOverlapPositions = onPositions.filter((x, y) => !onPositions.some((ox, oy) => ox === x && oy === y + 1))
 
-    for (let [x, y] of noOverlapPositions) {
+    for (let [y, x] of noOverlapPositions) {
       const newY = y + 1;
       if (newY > this.maxYPosition)
-        continue;
+        return true;
 
       if (this.tiles[newY][x] !== EMPTY_TILE) {
         return true;
