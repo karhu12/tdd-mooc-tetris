@@ -52,8 +52,12 @@ export class RotatingShape {
     }
 
     /* Returns all x/y positions that this shape affects relative to it's position on parent */
-    positionsRelativeTo(x, y) {
-        return this.toRows().map((v, i) => v.split('').map((vv, ii) => [y + i, x + ii])).flat();
+    positionsRelativeTo(x, y, ignoreEmpty = false) {
+        return this.toRows().map((v, i) =>
+            v.split('')
+            .filter((fv) => ignoreEmpty ? fv !== EMPTY_TILE : true)
+            .map((vv, ii) => [y + i, x + ii])
+        ).flat();
     }
 
     /* True if any shape part overlaps with the given x/y relative to starting x/y on parent */
