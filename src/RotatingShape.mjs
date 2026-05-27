@@ -55,8 +55,9 @@ export class RotatingShape {
     positionsRelativeTo(x, y, ignoreEmpty = false) {
         return this.toRows().map((v, i) =>
             v.split('')
-            .filter((fv) => ignoreEmpty ? fv !== EMPTY_TILE : true)
-            .map((vv, ii) => [y + i, x + ii])
+            .map((vv, ii) => [vv, [y + i, x + ii]])
+            .filter(arr => arr[0] !== EMPTY_TILE)
+            .map(arr => arr[1])
         ).flat();
     }
 

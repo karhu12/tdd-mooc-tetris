@@ -67,8 +67,11 @@ export class Board {
   tick() {
     if (this.shapeYPosition < this.maxYPosition && !this.isFallingBlocked()) {
       this.shapeYPosition++;
-    } else {
-      this.tiles[this.shapeYPosition][this.shapeXPosition] = this.shape;
+    } else if (this.shape) {
+      const frozen = this.shape.positionsRelativeTo(this.shapeXPosition, this.shapeYPosition, true);
+      for (const [y, x] of frozen) {
+        this.tiles[y][x] = this.shape.getRelativePosValue(x, y, this.shapeXPosition, this.shapeYPosition);
+      }
       this.shape = null;
     }
   }
