@@ -48,7 +48,20 @@ export class Board {
   }
 
   isFallingBlocked() {
-    return this.tiles[this.shapeYPosition + 1][this.shapeXPosition] !== EMPTY_TILE;
+    const onPositions = this.shape.positionsRelativeTo(this.shapeXPosition, this.shapeYPosition, true);
+    const noOverlapPositions = onPositions.filter((x, y) => !onPositions.some((ox, oy) => ox === x && oy === y + 1))
+
+    for (let [x, y] of noOverlapPositions) {
+      const newY = y + 1;
+      if (newY > this.maxYPosition)
+        continue;
+
+      if (this.tiles[newY][x] !== EMPTY_TILE) {
+        return true;
+      }
+    };
+
+    return false;
   }
 
   tick() {
