@@ -49,4 +49,20 @@ export class RotatingShape {
         }
         return new RotatingShape(newShape);
     }
+
+    /* Returns all x/y positions that this shape affects relative to it's position on parent */
+    positionsRelativeTo(x, y) {
+        return this.toRows().map((v, i) => v.split('').map((vv, ii) => [y + i, x + ii])).flat();
+    }
+
+    /* True if any shape part overlaps with the given x/y relative to starting x/y on parent */
+    isOnRelativePos(x, y, startX, startY) {
+        const onPositions = this.positionsRelativeTo(startX, startY);
+        return onPositions.some((on) => on[0] === y && on[1] === x)
+    }
+
+    /**Returns x/y position value from the shape relative to parent */
+    getRelativePosValue(x, y, startX, startY) {
+        return this.toRows()[y - startY][x - startX];
+    }
 }

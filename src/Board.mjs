@@ -24,11 +24,10 @@ export class Board {
 
   toString() {
     let state = '';
-    const shapeOn = this.shape ? this.shape.toRows().map((v, i) => v.split('').map((vv, ii) => [this.shapeYPosition + i, this.shapeXPosition + ii])).flat() : [];
     for (let y = 0; y < this.height; y++) {
       for (let x = 0; x < this.width; x++) {
-        if (shapeOn.some((on) => on[0] === y && on[1] === x))
-          state += this.shape.toRows()[y - this.shapeYPosition][x - this.shapeXPosition];
+        if (this.shape && this.shape.isOnRelativePos(x, y, this.shapeXPosition, this.shapeYPosition))
+          state += this.shape.getRelativePosValue(x, y, this.shapeXPosition, this.shapeYPosition);
         else
           state += this.tiles[y][x];
       }
