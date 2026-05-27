@@ -1,4 +1,5 @@
 import { normalize } from "../test/testing.mjs";
+import { EMPTY_TILE } from "./Constants.mjs";
 
 export class RotatingShape {
     static fromString(shapeString) {
@@ -56,9 +57,12 @@ export class RotatingShape {
     }
 
     /* True if any shape part overlaps with the given x/y relative to starting x/y on parent */
-    isOnRelativePos(x, y, startX, startY) {
+    isOnRelativePos(x, y, startX, startY, ignoreEmpty = true) {
         const onPositions = this.positionsRelativeTo(startX, startY);
-        return onPositions.some((on) => on[0] === y && on[1] === x)
+        const onRelative = onPositions.some((on) => on[0] === y && on[1] === x)
+        if (ignoreEmpty)
+            return onRelative && this.getRelativePosValue(x, y, startX, startY) !== EMPTY_TILE
+        return onRelative
     }
 
     /**Returns x/y position value from the shape relative to parent */
